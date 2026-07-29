@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Account Access - Nila Herbals</title>
+    <link rel="stylesheet" href="auth.css">
+</head>
+<body>
+
+    <!-- Falling leaves container for theme -->
+    <div class="auth-bg-leaves" id="authLeaves"></div>
+
+    <!-- Back to Home floating action -->
+    <a href="index.html" class="floating-back-btn">
+        <span class="arrow">←</span> Back to Nila Herbals
+    </a>
+
+    <!-- Main sliding container -->
+    <div class="auth-wrapper" id="authWrapper">
+        
+        <!-- Sign Up (Register) Panel -->
+        <div class="form-container sign-up-container">
+            <form id="signUpForm" onsubmit="handleFormSubmit(event, 'signup')">
+                <h1>Create Account</h1>
+                <p class="form-sub">Start your pure skincare journey with Nila today</p>
+                
+                <div class="input-field">
+                    <input type="text" id="regName" required placeholder=" " autocomplete="name">
+                    <label for="regName">Full Name</label>
+                </div>
+                
+                <div class="input-field">
+                    <input type="email" id="regEmail" required placeholder=" " autocomplete="email">
+                    <label for="regEmail">Email Address</label>
+                </div>
+                
+                <div class="input-field">
+                    <input type="password" id="regPassword" required placeholder=" " autocomplete="new-password">
+                    <label for="regPassword">Password</label>
+                </div>
+                
+                <div class="checkbox-field">
+                    <input type="checkbox" id="agreeTerms" required>
+                    <label for="agreeTerms">I agree to the Terms & Privacy Policy</label>
+                </div>
+                
+                <button type="submit" class="auth-submit-btn">Sign Up</button>
+                <div class="mobile-toggle">
+                    Already have an account? <button type="button" onclick="toggleMobileAuth()">Sign In</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Sign In (Login) Panel -->
+        <div class="form-container sign-in-container">
+            <form id="signInForm" onsubmit="handleFormSubmit(event, 'signin')">
+                <h1>Sign In</h1>
+                <p class="form-sub">Welcome back! Sign in to access your profile</p>
+                
+                <div class="input-field">
+                    <input type="email" id="logEmail" required placeholder=" " autocomplete="email">
+                    <label for="logEmail">Email Address</label>
+                </div>
+                
+                <div class="input-field">
+                    <input type="password" id="logPassword" required placeholder=" " autocomplete="current-password">
+                    <label for="logPassword">Password</label>
+                </div>
+                
+                <div class="forgot-pwd-wrap">
+                    <a href="#" class="forgot-link" onclick="alert('Password reset link sent to your email.');">Forgot password?</a>
+                </div>
+                
+                <button type="submit" class="auth-submit-btn">Sign In</button>
+                <div class="mobile-toggle">
+                    New to Nila? <button type="button" onclick="toggleMobileAuth()">Sign Up</button>
+                </div>
+            </form>
+        </div>
+
+        <!-- Sliding Overlay Panel (For Desktop) -->
+        <div class="overlay-container">
+            <div class="overlay">
+                <!-- Left Overlay (Revealed when Sign In is active, shows Sign Up callout) -->
+                <div class="overlay-panel overlay-left">
+                    <h2>Hello, Glowseeker!</h2>
+                    <p>Enter your details and start your journey with pure, organic Ayurvedic skincare formulations.</p>
+                    <button class="ghost-btn" id="signInBtn">Sign In</button>
+                </div>
+                <!-- Right Overlay (Revealed when Sign Up is active, shows Sign In callout) -->
+                <div class="overlay-panel overlay-right">
+                    <h2>Welcome Back!</h2>
+                    <p>Keep your skincare routing synchronized and explore custom matches for your skin and hair concerns.</p>
+                    <button class="ghost-btn" id="signUpBtn">Sign Up</button>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Success Modal -->
+    <div class="success-overlay" id="successOverlay">
+        <div class="success-card">
+            <span class="success-icon">🌿</span>
+            <h2 id="successMessageTitle">Success!</h2>
+            <p id="successMessageDesc">Redirecting to your custom dashboard...</p>
+        </div>
+    </div>
+
+    <script src="auth.js"></script>
+</body>
+</html>

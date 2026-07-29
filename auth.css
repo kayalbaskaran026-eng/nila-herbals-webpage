@@ -1,0 +1,560 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap');
+
+:root {
+    /* 🌿 Emerald Botanical Green Palette (Matched to Home) */
+    --primary-color: #1B6B4A;  /* Deep Emerald */
+    --primary-light: #2D8F64;  /* Fresh Emerald */
+    --primary-dark: #0D3D2A;   /* Dark Forest */
+    --accent-color: #E8C567;   /* Warm Gold */
+    --accent-hover: #D4B050;   /* Deeper Gold */
+    --text-color: #1A2E24;     /* Dark Forest Text */
+    --text-muted: #4A6B5A;     /* Muted Green */
+    --bg-light: #F5FAF7;       /* Fresh Mint White */
+    --font-heading: 'Cormorant Garamond', Georgia, serif;
+    --font-body: 'Plus Jakarta Sans', sans-serif;
+    --radius-md: 16px;
+    --radius-lg: 30px;
+    --shadow-lg: 0 20px 45px rgba(27, 107, 74, 0.15);
+    --shadow-md: 0 10px 30px rgba(27, 107, 74, 0.08);
+    --shadow-glow: 0 0 20px rgba(45, 143, 100, 0.35);
+    --shadow-glow-gold: 0 0 25px rgba(232, 197, 103, 0.45);
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: var(--bg-light);
+    background-image: 
+        radial-gradient(at 0% 0%, rgba(45, 143, 100, 0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 0%, rgba(232, 197, 103, 0.15) 0px, transparent 50%),
+        radial-gradient(at 100% 100%, rgba(45, 143, 100, 0.12) 0px, transparent 50%);
+    background-attachment: fixed;
+    font-family: var(--font-body);
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow-x: hidden;
+    padding: 20px;
+}
+
+/* Floating Back Button */
+.floating-back-btn {
+    position: fixed;
+    top: 30px;
+    left: 40px;
+    color: var(--primary-color);
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 15px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s ease;
+    z-index: 100;
+    background: white;
+    padding: 10px 20px;
+    border-radius: 30px;
+    box-shadow: var(--shadow-md);
+    border: 2px solid rgba(11, 122, 76, 0.1);
+}
+
+.floating-back-btn:hover {
+    color: var(--accent-color);
+    transform: translateX(-4px);
+    box-shadow: var(--shadow-glow);
+    border-color: var(--primary-light);
+}
+
+/* sliding Wrapper */
+.auth-wrapper {
+    background-color: #fff;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    position: relative;
+    overflow: hidden;
+    width: 100%;
+    max-width: 960px;
+    min-height: 600px;
+    border: 2px solid rgba(11, 122, 76, 0.08);
+}
+
+/* Forms layout */
+.form-container {
+    position: absolute;
+    top: 0;
+    height: 100%;
+    transition: all 0.6s ease-in-out;
+}
+
+.sign-in-container {
+    left: 0;
+    width: 50%;
+    z-index: 2;
+}
+
+.sign-up-container {
+    left: 0;
+    width: 50%;
+    opacity: 0;
+    z-index: 1;
+}
+
+/* Right Panel Active Styles (Slid overlay position) */
+.auth-wrapper.right-panel-active .sign-in-container {
+    transform: translateX(100%);
+    opacity: 0;
+    z-index: 1;
+}
+
+.auth-wrapper.right-panel-active .sign-up-container {
+    transform: translateX(100%);
+    opacity: 1;
+    z-index: 5;
+    animation: showSignUp 0.6s;
+}
+
+@keyframes showSignUp {
+    0%, 49.99% {
+        opacity: 0;
+        z-index: 1;
+    }
+    50%, 100% {
+        opacity: 1;
+        z-index: 5;
+    }
+}
+
+/* Form Styles */
+form {
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 50px;
+    height: 100%;
+    text-align: center;
+}
+
+form h1 {
+    font-family: var(--font-heading);
+    font-size: 40px;
+    font-weight: 600;
+    color: var(--primary-dark);
+    margin-bottom: 6px;
+}
+
+.form-sub {
+    font-size: 14px;
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+/* Floating Label Fields */
+.input-field {
+    position: relative;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.input-field input {
+    width: 100%;
+    padding: 16px 20px;
+    border: 2px solid rgba(11, 122, 76, 0.12);
+    background: #fcfdfc;
+    border-radius: 12px;
+    font-family: var(--font-body);
+    font-size: 14px;
+    color: var(--text-color);
+    outline: none;
+    transition: all 0.3s ease;
+}
+
+.input-field label {
+    position: absolute;
+    left: 20px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: var(--text-muted);
+    font-size: 14px;
+    pointer-events: none;
+    transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+    background: white;
+    padding: 0 6px;
+}
+
+/* Floating effect trigger */
+.input-field input:focus {
+    border-color: var(--primary-light);
+    background: white;
+    box-shadow: 0 0 12px rgba(18, 176, 112, 0.1);
+}
+
+.input-field input:focus ~ label,
+.input-field input:not(:placeholder-shown) ~ label {
+    top: 0;
+    font-size: 11px;
+    color: var(--primary-color);
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    transform: translateY(-50%) scale(0.95);
+}
+
+.forgot-pwd-wrap {
+    width: 100%;
+    text-align: right;
+    margin-bottom: 25px;
+}
+
+.forgot-link {
+    color: var(--text-muted);
+    font-size: 13px;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.forgot-link:hover {
+    color: var(--accent-hover);
+}
+
+.checkbox-field {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    text-align: left;
+    margin-bottom: 25px;
+}
+
+.checkbox-field input {
+    accent-color: var(--primary-color);
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.checkbox-field label {
+    font-size: 13px;
+    color: var(--text-muted);
+    user-select: none;
+    cursor: pointer;
+}
+
+.auth-submit-btn {
+    border-radius: 30px;
+    border: none;
+    background: linear-gradient(135deg, var(--primary-color), var(--primary-light));
+    color: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+    padding: 14px 45px;
+    letter-spacing: 0.5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 6px 15px rgba(11, 122, 76, 0.2);
+    width: 100%;
+}
+
+.auth-submit-btn:hover {
+    background: linear-gradient(135deg, var(--accent-color), var(--accent-hover));
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-glow-gold);
+}
+
+/* Sliding Overlay Panel Desktop */
+.overlay-container {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 50%;
+    height: 100%;
+    overflow: hidden;
+    transition: transform 0.6s ease-in-out;
+    z-index: 100;
+}
+
+.auth-wrapper.right-panel-active .overlay-container {
+    transform: translateX(-100%);
+}
+
+.overlay {
+    background: linear-gradient(135deg, var(--primary-dark), var(--primary-color), var(--primary-light));
+    background-image: 
+        radial-gradient(circle at 20% 30%, rgba(18, 176, 112, 0.4) 0%, transparent 70%),
+        radial-gradient(circle at 80% 70%, rgba(255, 159, 28, 0.25) 0%, transparent 70%);
+    color: #ffffff;
+    position: relative;
+    left: -100%;
+    height: 100%;
+    width: 200%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+}
+
+.auth-wrapper.right-panel-active .overlay {
+    transform: translateX(50%);
+}
+
+.overlay-panel {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    padding: 0 50px;
+    text-align: center;
+    top: 0;
+    height: 100%;
+    width: 50%;
+    transform: translateX(0);
+    transition: transform 0.6s ease-in-out;
+}
+
+.overlay-left {
+    transform: translateX(-20%);
+}
+
+.auth-wrapper.right-panel-active .overlay-left {
+    transform: translateX(0);
+}
+
+.overlay-right {
+    right: 0;
+    transform: translateX(0);
+}
+
+.auth-wrapper.right-panel-active .overlay-right {
+    transform: translateX(20%);
+}
+
+.overlay-panel h2 {
+    font-family: var(--font-heading);
+    font-size: 44px;
+    font-weight: 600;
+    margin-bottom: 15px;
+}
+
+.overlay-panel p {
+    font-size: 15px;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    color: rgba(255, 255, 255, 0.85);
+}
+
+.ghost-btn {
+    background-color: transparent;
+    border: 2px solid #ffffff;
+    border-radius: 30px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: 700;
+    padding: 12px 40px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.ghost-btn:hover {
+    background-color: #ffffff;
+    color: var(--primary-color);
+    transform: scale(1.03);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+/* Mobile Toggle link */
+.mobile-toggle {
+    display: none;
+    margin-top: 25px;
+    font-size: 14px;
+    color: var(--text-muted);
+}
+
+.mobile-toggle button {
+    background: transparent;
+    border: none;
+    color: var(--primary-color);
+    font-weight: 700;
+    cursor: pointer;
+    font-family: var(--font-body);
+}
+
+/* Shake Animation */
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-10px); }
+    40%, 80% { transform: translateX(10px); }
+}
+
+.shake {
+    animation: shake 0.4s ease-in-out;
+}
+
+/* Success Card Overlay */
+.success-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(5, 59, 35, 0.88);
+    backdrop-filter: blur(10px);
+    z-index: 200;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.5s ease;
+}
+
+.success-overlay.active {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.success-card {
+    background: white;
+    border-radius: var(--radius-lg);
+    padding: 50px;
+    text-align: center;
+    box-shadow: var(--shadow-lg);
+    max-width: 420px;
+    width: 90%;
+    transform: scale(0.9);
+    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.success-overlay.active .success-card {
+    transform: scale(1);
+}
+
+.success-icon {
+    font-size: 60px;
+    margin-bottom: 20px;
+    display: block;
+    animation: bounce 1s infinite alternate;
+}
+
+@keyframes bounce {
+    from { transform: translateY(0); }
+    to { transform: translateY(-10px); }
+}
+
+.success-card h2 {
+    font-family: var(--font-heading);
+    font-size: 34px;
+    color: var(--primary-dark);
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.success-card p {
+    font-size: 15px;
+    color: var(--text-muted);
+}
+
+/* Falling Leaves on Auth Page background */
+.falling-leaf {
+    position: fixed;
+    top: -35px;
+    z-index: 1;
+    pointer-events: none;
+    user-select: none;
+    animation-name: fallAndSway;
+    animation-timing-function: linear;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fallAndSway {
+    0% {
+        top: -35px;
+        transform: translateX(0) rotate(0deg);
+        opacity: 0;
+    }
+    10% {
+        opacity: var(--leaf-opacity, 0.4);
+    }
+    90% {
+        opacity: var(--leaf-opacity, 0.4);
+    }
+    100% {
+        top: 105vh;
+        transform: translateX(var(--leaf-sway, 60px)) rotate(var(--leaf-rotate, 360deg));
+        opacity: 0;
+    }
+}
+
+/* Responsive Rules for Mobile view */
+@media (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+    
+    .floating-back-btn {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        font-size: 13px;
+        padding: 8px 16px;
+    }
+
+    .auth-wrapper {
+        min-height: 520px;
+        max-width: 480px;
+        margin-top: 50px;
+    }
+
+    .overlay-container {
+        display: none; /* Hide sliding panel on mobile */
+    }
+
+    .form-container {
+        width: 100%;
+        position: relative;
+    }
+
+    .sign-up-container {
+        display: none;
+        opacity: 0;
+    }
+
+    .sign-in-container {
+        display: block;
+        opacity: 1;
+    }
+
+    /* Switch panels on mobile via active state */
+    .auth-wrapper.right-panel-active .sign-in-container {
+        display: none;
+    }
+
+    .auth-wrapper.right-panel-active .sign-up-container {
+        display: block;
+        opacity: 1;
+        transform: none;
+        animation: fadeIn 0.4s ease;
+    }
+
+    form {
+        padding: 40px 24px;
+    }
+
+    form h1 {
+        font-size: 32px;
+    }
+
+    .mobile-toggle {
+        display: block;
+    }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
