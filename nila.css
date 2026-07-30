@@ -1033,6 +1033,7 @@ body {
     position: absolute;
     top: 22px;
     right: 22px;
+    z-index: 10;
     background: linear-gradient(135deg, var(--btn-color), var(--primary));
     color: white;
     padding: 6px 16px;
