@@ -558,3 +558,12 @@ form h1 {
     from { opacity: 0; }
     to { opacity: 1; }
 }
+
+@media (max-width: 480px) {
+    form {
+        padding: 20px 15px;
+    }
+    .success-card {
+        padding: 30px 20px;
+    }
+}
