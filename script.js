@@ -157,6 +157,7 @@ window.addEventListener('DOMContentLoaded', () => {
     initStatsCounter();
     initIngredientExplorer();
     initProductSpotlight();
+    initNavbarScroll();
 
     // 6. Promo Video Controls
     const promoVideo = document.getElementById('promoVideo');
@@ -358,4 +359,32 @@ function initProductSpotlight() {
     }
 
     startAutoPlay();
+}
+
+// 10. Navbar Scroll Hide/Show Logic
+function initNavbarScroll() {
+    const navbar = document.querySelector('.navbar');
+    if (!navbar) return;
+    
+    let lastScrollY = window.scrollY;
+    
+    window.addEventListener('scroll', () => {
+        const currentScrollY = window.scrollY;
+        
+        // Add styling class when scrolled past top
+        if (currentScrollY > 50) {
+            navbar.classList.add('scrolled');
+        } else {
+            navbar.classList.remove('scrolled');
+        }
+        
+        // Hide on scroll down, show on scroll up
+        if (currentScrollY > lastScrollY && currentScrollY > 100) {
+            navbar.classList.add('hidden-nav');
+        } else {
+            navbar.classList.remove('hidden-nav');
+        }
+        
+        lastScrollY = currentScrollY;
+    }, { passive: true });
 }
